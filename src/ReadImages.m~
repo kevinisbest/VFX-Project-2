@@ -31,11 +31,8 @@ function [images] = ReadImages(folder, extension)
          disp(filename);
          img = imread(filename);
          img = imrotate(img, 270);
-         j = n;
-         while(j>0)
-            img = imresize(img,0.5);
-            j=j-2;
-         end
+         
+         img = imresize(img,0.25);
          images(:,:,:,i) = img;
      end
     

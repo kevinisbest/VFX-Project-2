@@ -1,9 +1,8 @@
-function [warped_images] = Warping(images, numbers, f)
+function [warped_images] = Warping(images, numbers, H, W, channel, f)
     
-    info = imfinfo(image(1));
-    H = info.Hight;
-    W = info.Weight;
-    warped_images = zeros(H, W, info.NumberOfSamples, numbers, 'uint8');
+    disp([H,W,channel]);
+    
+    warped_images = zeros(H, W, channel, numbers, 'uint8');
     y0 = H/2;
     x0 = W/2;
     for y_new = 1:H
@@ -19,6 +18,6 @@ function [warped_images] = Warping(images, numbers, f)
             end
         end
     end
-    %figure(1);imshow(images(:,:,:,1));
-    %figure(2);imshow(warped_images(:,:,:,1));
+    figure(1);imshow(images(:,:,:,1));
+    figure(2);imshow(warped_images(:,:,:,1));
 end
