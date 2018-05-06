@@ -19,7 +19,7 @@ function [images] = ReadImages(folder, extension)
     img_channel = size(img,3);
     disp([img_height,img_width]);
     n=0;
-    while(img_height>2000)
+    while(img_height>1000)
         img_height = img_height/2;
         img_width = img_width/2;
         n = n+2
