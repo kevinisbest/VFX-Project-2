@@ -1,6 +1,6 @@
 function Main(folder)
 
-    focal = 0;
+    focal = 800;
     
     % harris detector parameters
     sigma = 3;
@@ -16,7 +16,7 @@ function Main(folder)
     [r, c, channel, numbers] = size(images);
     
     [H,W,channel] = size(images(:,:,:,1));
-    focal = H;
+    
     
     disp('----- cylindrical projection -----');
     [warped_images] = Warping(images, numbers, H, W, channel, focal);
