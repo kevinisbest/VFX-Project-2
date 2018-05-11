@@ -28,7 +28,7 @@ function Main(folder)
     disp('----- harris corner detection and feature detection -----');
     
     for i = 1:numbers
-        [featureX, featureY, R]= Harris(warped_images(:,:,:,i), sigma, w, threshold, k);
+        [featureX, featureY]= Harris(warped_images(:,:,:,i), sigma, w, threshold, k);
 %         disp(length(featureX));
         [feature_pos, feature_descriptor] = SIFT(warped_images(:,:,:,i), featureX, featureY);
         features_pos{i} = feature_pos;
