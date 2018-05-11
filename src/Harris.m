@@ -18,6 +18,12 @@ function [X,Y,RT]= harrisDetection(image, sigma, w, threshold, k)
     RT = RT & (R>imdilate(R,[1 1 1;1 0 1;1 1 1]));
     
     [Y,X] = find(RT);
+%     figure
+%     imshow(image);
+%     hold on
+%     for i=1:length(X)
+%         plot(Y(i),X(i),'r+');
+%     end
 
 end
 function result = GaussianFilter(image,sigma,w)
