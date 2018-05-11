@@ -18,6 +18,6 @@ function [warped_images] = Warping(images, numbers, H, W, channel, f)
             end
         end
     end
-    figure(1);imshow(images(:,:,:,1));
-    figure(2);imshow(warped_images(:,:,:,1));
+%     figure(1);imshow(images(:,:,:,1));
+%     figure(2);imshow(warped_images(:,:,:,1));
 end

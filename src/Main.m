@@ -5,7 +5,7 @@ function Main(folder)
     % harris detector parameters
     sigma = 3;
     w = 5;             % parrington=5 grail=5 tree=3 tesv=4
-    threshold = 4000;  % parrington=4000 grail=4000 tree=500 tesv=1000
+    threshold = 2000;  % parrington=4000 grail=4000 tree=500 tesv=1000
     k = 0.04;
 
     % ransac parameters

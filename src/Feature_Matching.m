@@ -1,8 +1,8 @@
 function match = Frature_Matching(desc1, desc2)
 
     match = [];
-    disp(size(desc1));
-    disp(size(desc2));
+%     disp(size(desc1));
+%     disp(size(desc2));
 
     for i = 1:size(desc1, 1)
         dists = [];

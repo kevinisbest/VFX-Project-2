@@ -7,7 +7,7 @@ function maxMatch = RANSAC(match, pos1, pos2, threshold)
     k = ceil(log(1-P)/log(1-p^n));
     
     N = size(match, 1);
-    %disp('N');disp(N);
+%     disp('N');disp(N);
     
     maxMatch = [];
     if N <= n

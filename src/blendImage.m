@@ -8,14 +8,15 @@ function imout = blendImage(im1, im2, trans, step, drift_y)
     [row2, col2, channel] = size(im2);
     
     imout = zeros(ceil(row2*1.5), col1+abs(trans(1)), channel);
-    %imshow(im1);imshow(im2);
-    blendWidth = col2 - trans(1);
+%     imshow(im1);
+%     imshow(im2);
+    blendWidth = col2 - trans(1)
     
     % r1 & r2 are alpha layers.
-    r1 = ones(1, col1);
-    r2 = ones(1, col2);
-    r1(1, 1:blendWidth+1) = [0:(1/blendWidth):1];
-    r2(1, (end-blendWidth):end) = [1:(-1/blendWidth):0];
+    r1 = ones(1, col1)
+    r2 = ones(1, col2)
+    r1(1, 1:blendWidth+1) = [0:(1/blendWidth):1]
+    r2(1, (end-blendWidth):end) = [1:(-1/blendWidth):0]
 
     % premultiply im1, im2 by r1, r2
     bim1 = double(im1);
