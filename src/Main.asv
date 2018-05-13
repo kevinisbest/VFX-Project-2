@@ -78,8 +78,8 @@ function Main(folder)
     imNow = warped_images(:,:,:,1);
     for l = 2:numbers
         %disp(trans{l-1});        
-        imNow = blendImage(imNow, warped_images(:,:,:,l), trans{l-1}, l-1, avg_drift_y);
-        %imNow = blendImage(imNow, warped_images(:,:,:,l), [-19;119], l-1, avg_drift_y);
+        %imNow = blendImage(imNow, warped_images(:,:,:,l), trans{l-1}, l-1, avg_drift_y);
+        imNow = blendImage(imNow, warped_images(:,:,:,l), [-19;119], l-1, avg_drift_y);
     end
     imwrite(uint8(imNow), result_location);
     disp('done');
