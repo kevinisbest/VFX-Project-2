@@ -1,4 +1,4 @@
-function [X,Y]= Harris(image, sigma, w, threshold, k)
+function [X,Y]= Harris(image, a)
 
     % in_image-待測得的rgb
     % a--0.04~0.06
@@ -6,7 +6,7 @@ function [X,Y]= Harris(image, sigma, w, threshold, k)
     grayimage=rgb2gray(image);
     I=double(grayimage);
     %%%% 算xy方向梯度 %%%%
-
+    
     fx=[-1,0,1];%x方向梯度模板
     Ix=filter2(fx,I);%x方向濾波
     fy=[-1;0;1];%y方向梯度模板
@@ -28,7 +28,7 @@ function [X,Y]= Harris(image, sigma, w, threshold, k)
     for i=1:height
         for j=1:width
             M=[IX2(i,j) IXY(i,j);IXY(i,j) IY2(i,j)];
-            R(i,j)=det(M)-k*(trace(M))^2;
+            R(i,j)=det(M)-a*(trace(M))^2;
         end
     end
     %%%%%去掉小閥值的Harris值%%%%%

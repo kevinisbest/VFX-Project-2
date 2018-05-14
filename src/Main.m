@@ -3,9 +3,6 @@ function Main(folder)
     focal = 440;
     
     % harris detector parameters
-    sigma = 3;
-    w = 5;             % parrington=5 grail=5 tree=3 tesv=4
-    threshold = 2000;  % parrington=4000 grail=4000 tree=500 tesv=1000
     k = 0.04;
 
     % ransac parameters
@@ -27,11 +24,12 @@ function Main(folder)
     
     disp('----- cylindrical projection -----');
     [warped_images] = Warping(images, numbers, H, W, channel, focal);
-    
+%     hold on
+%     imshow(warped_images(:,:,:,3));
     disp('----- harris corner detection and feature detection -----');
     
     for i = 1:numbers
-        [featureX, featureY]= Harris(warped_images(:,:,:,i), sigma, w, threshold, k);
+        [featureX, featureY]= Harris(warped_images(:,:,:,i), k);
 %         disp(length(featureX));
         [feature_pos, feature_descriptor] = SIFT(warped_images(:,:,:,i), featureX, featureY);
         features_pos{i} = feature_pos;
@@ -71,8 +69,9 @@ function Main(folder)
         drift_y = drift_y+trans{k}(2);
     end
     
-    disp('------ solve drift problem -----');
+    
     if (drift_tag)
+        disp('----- solve drift problem -----');
         avg_drift_y = round(drift_y / (numbers-1));
     else avg_drift_y = 0;
     end
@@ -84,8 +83,7 @@ function Main(folder)
         imNow = blendImage(imNow, warped_images(:,:,:,l), trans{l-1}, l-1, avg_drift_y);
         %imNow = blendImage(imNow, warped_images(:,:,:,l), [-19;119], l-1, avg_drift_y);
     end
-%     folder = '/Users/jia/someFolder';
-%     imwrite(imedge,fullfile(folder,'binaryeye.jpg'));
-    imwrite(imNow, fullfile(result_location,'panorama.png'));
+
+    imwrite(uint8(imNow), fullfile(result_location,'panorama4k.png'));
     disp('done');
 end

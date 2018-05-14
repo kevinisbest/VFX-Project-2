@@ -38,5 +38,5 @@ function [images] = ReadImages(folder, extension)
         end
         images(:,:,:,i) = img;
     end
-    imshow(images(:,:,:,2));
+%     imshow(images(:,:,:,2))
 end

@@ -1,7 +1,7 @@
 function maxMatch = RANSAC(match, pos1, pos2, threshold)
     
     
-	p = 0.6;
+	p = 0.5;
 	n = 2;
 	P = 0.9999;
     k = ceil(log(1-P)/log(1-p^n));
