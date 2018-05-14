@@ -12,7 +12,10 @@ function Main(folder)
     theta = 10;
     
     % result location
-    result_location = ['../result/panorama.png'];
+    result_location = '/Users/kevin_mbp/VFX-Project-2/result/';
+    
+    % drift erasing parameters
+    drift_tag = 1; % do drift correction or not
 %%%%%%%%%%
     
     disp('----- loading images -----');
@@ -68,19 +71,21 @@ function Main(folder)
         drift_y = drift_y+trans{k}(2);
     end
     
-%     disp('------ solve drift problem -----');
-%     if (drift_tag)
-%         avg_drift_y = round(drift_y / (img_count-1));
-%     else avg_drift_y = 0;
-%     end
-    avg_drift_y = 0;
-    disp('blending'); % blend images together
+    disp('------ solve drift problem -----');
+    if (drift_tag)
+        avg_drift_y = round(drift_y / (numbers-1));
+    else avg_drift_y = 0;
+    end
+    
+    disp('----- blending -----'); % blend images together
     imNow = warped_images(:,:,:,1);
     for l = 2:numbers
         %disp(trans{l-1});        
         imNow = blendImage(imNow, warped_images(:,:,:,l), trans{l-1}, l-1, avg_drift_y);
         %imNow = blendImage(imNow, warped_images(:,:,:,l), [-19;119], l-1, avg_drift_y);
     end
-    imwrite(uint8(imNow), result_location);
+%     folder = '/Users/jia/someFolder';
+%     imwrite(imedge,fullfile(folder,'binaryeye.jpg'));
+    imwrite(imNow, fullfile(result_location,'panorama.png'));
     disp('done');
 end

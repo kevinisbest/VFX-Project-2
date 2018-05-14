@@ -50,7 +50,7 @@ function [X,Y]= Harris(image, sigma, w, threshold, k)
     %%%%%%顯示所提取的Harris角點%%%%
     [Y,X]=find(corner_peaks==1);
 %     figure
-%     imshow(grayimage);
+%     imshow(image);
 %     hold on
 %     for i=1:length(Y)
 %         plot(X(i),Y(i),'r+');
