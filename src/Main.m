@@ -1,6 +1,6 @@
 function Main(folder)
 %%%%%%%%%%
-    focal = 440;
+    focal = 443.1;
     
     % harris detector parameters
     k = 0.04;
@@ -81,9 +81,9 @@ function Main(folder)
     for l = 2:numbers
         %disp(trans{l-1});        
         imNow = blendImage(imNow, warped_images(:,:,:,l), trans{l-1}, l-1, avg_drift_y);
-        %imNow = blendImage(imNow, warped_images(:,:,:,l), [-19;119], l-1, avg_drift_y);
     end
 
-    imwrite(uint8(imNow), fullfile(result_location,'panorama4k.png'));
+%     imwrite(uint8(imNow), fullfile(result_location,'panorama4k.png'));
+    imwrite(uint8(imNow), fullfile('../result/panorama.png'));
     disp('done');
 end

@@ -1,15 +1,10 @@
 function imout = blendImage(im1, im2, trans, step, drift_y)
 
-    % assumption
-    %   trans = [dX, dY]; dX < 0;
-    %   im1 and im2 are 3-channel images.
-    
     [row1, col1, channel] = size(im1);    
     [row2, col2, channel] = size(im2);
     
+    % create output
     imout = zeros(ceil(row2*1.5), col1+abs(trans(1)), channel);
-%     imshow(im1);
-%     imshow(im2);
     blendWidth = col2 - trans(1);
     
     % r1 & r2 are alpha layers.
