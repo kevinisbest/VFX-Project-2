@@ -83,7 +83,7 @@ function Main(folder)
         imNow = blendImage(imNow, warped_images(:,:,:,l), trans{l-1}, l-1, avg_drift_y);
     end
 
-    imwrite(uint8(imNow), fullfile(folder,'panorama_tmp2.png'));
+    imwrite(uint8(imNow), fullfile(folder,'panorama.png'));
 %     imwrite(uint8(imNow), fullfile('../result/panorama_tmp.png'));
     disp('done');
 end
