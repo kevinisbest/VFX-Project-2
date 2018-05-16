@@ -9,7 +9,7 @@ function Main(folder)
     theta = 10;
     
     % result location
-    result_location = '/Users/kevin_mbp/VFX-Project-2/result/';
+    result_location = '/Users/kevin_mbp/Desktop/images/small/';
     
     % drift erasing parameters
     drift_tag = 1; % do drift correction or not
@@ -41,19 +41,19 @@ function Main(folder)
     
     disp('----- feature matching and RANSAC -----');
     for j = 1:numbers-1
-        desc1 = features_desc{j};
-        desc2 = features_desc{j+1};
+        descriptor1 = features_desc{j};
+        descriptor2 = features_desc{j+1};
         
-        pos1 = features_pos{j};
-        pos2 = features_pos{j+1};
+        position1 = features_pos{j};
+        position2 = features_pos{j+1};
         
-        match = [];
+%         match = [];
         
         % feature matching
-        match = Feature_Matching(desc1, desc2);
+        match = Feature_Matching(descriptor1, descriptor2);
         
         % RANSAC
-        matchInlier = RANSAC(match, pos1, pos2, theta);
+        matchInlier = RANSAC(match, position1, position2, theta);
         
         matches{j} = match;
 %         disp(matches{j});
@@ -83,7 +83,7 @@ function Main(folder)
         imNow = blendImage(imNow, warped_images(:,:,:,l), trans{l-1}, l-1, avg_drift_y);
     end
 
-%     imwrite(uint8(imNow), fullfile(result_location,'panorama4k.png'));
-    imwrite(uint8(imNow), fullfile('../result/panorama.png'));
+    imwrite(uint8(imNow), fullfile(folder,'panorama_tmp2.png'));
+%     imwrite(uint8(imNow), fullfile('../result/panorama_tmp.png'));
     disp('done');
 end

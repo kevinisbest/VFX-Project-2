@@ -33,7 +33,7 @@ function maxMatch = RANSAC(match, position1, position2, threshold)
         other_position2 = position2(remainMatch(:,2), :);
 
         % fit parameters theta with these n samples
-        tmp_match = [];
+        tmpMatch = [];
         posDiff = sample_position1 - sample_position2;
         theta = mean(posDiff);
 
@@ -43,11 +43,11 @@ function maxMatch = RANSAC(match, position1, position2, threshold)
         for i = 1:size(other_position1, 1)
             d = (other_position1(i,:)-other_position2(i,:)) - theta;
             if sqrt(sum(d.^2)) < threshold
-                tmp_match = [tmp_match; remainMatch(i, :)];
+                tmpMatch = [tmpMatch; remainMatch(i, :)];
             end
         end
-        if size(tmp_match, 1) > size(maxMatch, 1)
-            maxMatch = tmp_match;
+        if size(tmpMatch, 1) > size(maxMatch, 1)
+            maxMatch = tmpMatch;
         end
     end
     

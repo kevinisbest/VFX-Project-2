@@ -17,7 +17,7 @@ function [X,Y]= Harris(image, a)
     Ixy=Ix.*Iy;
     %%%%使用高斯加權函數對梯度乘積行加權%%%%
     %產生一個7*7的高斯，sigma值2
-    h=fspecial('gaussian',[7,7],2);
+    h=fspecial('gaussian',[5,5],2);
     IX2=filter2(h,Ix2);
     IY2=filter2(h,Iy2);
     IXY=filter2(h,Ixy);
@@ -57,40 +57,6 @@ function [X,Y]= Harris(image, a)
 %     end
     
     
-%     grayimage = rgb2gray(image);
-%     I = GaussianFilter(grayimage,sigma,w);
-%     [Ix,Iy] = gradient(I);
-% 
-%     Ix2 = Ix.^2;
-%     Iy2 = Iy.^2;
-%     Ixy = Ix.*Iy;
-% 
-%     Sx2 = GaussianFilter(Ix2,sigma,w);
-%     Sy2 = GaussianFilter(Iy2,sigma,w);
-%     Sxy = GaussianFilter(Ixy,sigma,w);
-% 
-%     R = (Sx2.*Sy2-Sxy.^2)-k*(Sx2+Sy2).^2;
-% 
-%     RT = R>threshold;
-%     RT = RT & (R>imdilate(R,[1 1 1;1 0 1;1 1 1]));
-%     
-%     [Y,X] = find(RT);
-%     figure
-%     imshow(image);
-%     hold on
-%     for i=1:length(X)
-%         plot(X(i),Y(i),'r+');
-%     end
 
 end
-% function result = GaussianFilter(image,sigma,w)
-% if(~exist('sigma'))
-%     sigma = 0.5;
-% end
-% if(~exist('w'))
-%     w = 3;
-% end
-% 
-%   Gaussian = fspecial('Gaussian',[w w],sigma);
-%   result = filter2(Gaussian,image);
-% end
+

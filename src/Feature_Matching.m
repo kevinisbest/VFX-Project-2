@@ -1,24 +1,26 @@
-function match = Frature_Matching(desc1, desc2)
+function match = Feature_Matching(descriptor1, descriptor2)
 
     match = [];
 %     disp(size(desc1));
 %     disp(size(desc2));
 
-    for i = 1:size(desc1, 1)
+    for i = 1:size(descriptor1, 1)
         dists = [];
-        for j = 1:size(desc2, 1)
-            dists = [dists; Distance(desc1(i,:), desc2(j,:))];
+        for j = 1:size(descriptor2, 1)
+            tmp = [dists; Distance(descriptor1(i,:), descriptor2(j,:))];
+            dists = tmp;
         end
-        [min1 min1_idx] = min(dists);
-        dists(min1_idx) = [];
-        min2 = min(dists);
-        %disp(min1);
-        %disp(min2);
-        if (min1/min2) < 0.8
-            match = [match; [i min1_idx]];
+        [dist1,index] = sort(dists);
+        tmp_min1 = dist1(1);
+        tmp_index1 = index(1); 
+        tmp_min2 = dist1(2);
+
+        if (tmp_min1/tmp_min2) < 0.8
+            tmp_match = [match; [i ,tmp_index1]];
+            match = tmp_match;
         end
     end
 end
-function Dis = Distance(desc1, desc2)
-    Dis = sqrt(sum((desc1 - desc2) .^ 2));
+function Dis = Distance(descriptor1, descriptor2)
+    Dis = sqrt(sum((descriptor1 - descriptor2) .^ 2));
 end
